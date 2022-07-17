@@ -89,11 +89,11 @@ app.put('/priceupdate', async (req,res) => {
   const newPrices = req.body;
   try {
     await writeJSON(pricesPath, newPrices);
+    res.json(newPrices);
   }
   catch(err) {
-    console.log(err);
+    res.send(err);
   }
-  res.json(newPrices);
 })
 
 app.put('/resetseats', async (_,res) => {
@@ -107,7 +107,6 @@ app.put('/resetseats', async (_,res) => {
     res.json(resettedSeats);
   }
   catch (error) {
-    console.log(error);
     res.send(error);
   }
 })
